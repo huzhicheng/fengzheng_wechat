@@ -7,6 +7,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="fengzheng_wechat" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="dom4j-2.0.0-RC1" />
+        </element>
       </element>
     </root>
   </artifact>
