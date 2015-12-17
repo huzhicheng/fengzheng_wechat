@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import org.fengzheng.wechat.common.Decript;
+import org.fengzheng.wechat.message.MessageHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -45,7 +46,21 @@ public class Start extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.setContentType("text/html;charset=utf-8"); //设置输出编码格式
+        System.out.println("请求进入");
+        String result = "";
+        try {
+            Map map = MessageHandler.parseXml(request);
+            System.out.println("开始构造消息");
+            result = MessageHandler.buildXml(map, response);
+            System.out.println(result);
+            if(result.equals(""))
+                result = "未正确响应";
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("发生异常："+ e.getMessage());
+        }
+        response.getWriter().println(result);
     }
 
     /**
