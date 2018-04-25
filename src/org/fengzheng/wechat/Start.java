@@ -37,7 +37,7 @@ public class Start extends HttpServlet {
         //加密
         String mytoken = Decript.SHA1(sortString);
         //校验签名
-        if (mytoken != null && mytoken != "" && mytoken.equals(signature)) {
+        if (mytoken != null && !mytoken.equals("") && mytoken.equals(signature)) {
             System.out.println("签名校验通过。");
             response.getWriter().println(echostr);
         } else {
